@@ -1,3 +1,200 @@
-h1 {
-    color: red;
+h3 {
+    margin: 0;
 }
+
+body{
+    font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    background-color: #DADADA;
+}
+
+.container{
+    width: 80%;
+    margin-left: auto!important;
+    margin-right: auto!important;
+    padding-top: 100px;
+}
+
+.grid{
+    padding:0;
+    margin:0;
+}
+
+.col{
+    padding:10px;
+    position: relative;
+    display: inline-block;
+    margin-top: 0 !important;
+    vertical-align: top;
+}
+
+.col-left{
+    width: 65% !important;
+}
+
+.col-right{
+    width: 30% !important;
+}
+
+.segments{
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);
+}
+
+.segment:first-child{
+    border-top: none;
+    border-radius: 5px 5px 0 0;
+}
+
+.segment:last-child{
+    border-radius: 0 0 5px 5px;
+}
+
+.segment{
+    border-top: 1px solid rgba(34,36,38,.15);
+    background: #FFF;
+    padding: 14px;
+}
+
+.input{
+    display: flex;
+}
+
+.form input{
+    padding: 10px;
+    flex: 1 0 auto;
+    border:1px solid #ccc;
+    border-right: none;
+    transition: color .1s ease,border-color .1s ease;
+    border-radius: 5px 0 0 5px;
+}
+
+.form input:focus{
+    outline: none;
+    border: 1px solid #1678C2;
+    border-right: none;
+}
+
+.button {
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    outline: 0;
+    padding: 5px 15px;
+    transition: opacity .1s ease,background-color .1s ease,box-shadow .1s ease,color .1s ease,background .1s ease;
+    font-weight: 700;
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+}
+
+.button.primary {
+    background: #2185D0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: 0;
+}
+
+.button.primary:hover {
+    background: #1678C2;
+}
+
+.form .input .button {
+    border-radius: 0 5px 5px 0;
+}
+
+.title-cell {
+    vertical-align: middle;
+    width: 25% !important;
+}
+
+.state-bought .title-cell {
+    text-decoration: line-through;
+}
+
+.add-buttons{
+    width: 30%!important;
+    text-align: center;
+    padding: 0 10px;
+}
+
+.last-buttons{
+    width: 30%!important;
+    text-align: right;
+    padding: 0 10px;
+}
+
+.circular {
+    border-radius: 50%;
+    padding: 10px 14px;
+}
+
+.state-bought .circular {
+    display: none;
+}
+
+button.red{
+    background: #DB2828;
+}
+
+button.red:hover{
+    background: #db0000;
+}
+
+button.green {
+    background: #21BA45;
+}
+
+button.green:hover {
+    background: #22973e;
+}
+
+.count-label{
+    background: #E8E8E8;
+    border-radius: 5px;
+    font-size: 12px;
+    line-height: 1;
+    margin: 5px;
+    padding: 5px 10px;
+}
+
+.state-bought .count-label{
+    margin-top: 8px;
+    display: inline-block;
+}
+
+.buy-button {
+    background-color: #E8E8E8;
+    color: #000;
+    padding:10px 15px;
+    border-radius: 5px;
+}
+
+.buy-button:hover {
+    background-color: #C5C6C8;
+}
+
+.delete-button {
+    padding:10px 15px;
+    border-radius: 5px;
+}
+
+.stats-label {
+    font-size: 10px;
+    margin: 5px;
+    background-color: #E8E8E8;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.orange {
+    background-color: #F2711C;
+}
+.stats-label .circular {
+    color: #fff;
+    padding: 5px 7px;
+}
+
+.stats-bought, .stats-bought .circular {
+    text-decoration: line-through;
+}
+
+
+
