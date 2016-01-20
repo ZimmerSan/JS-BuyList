@@ -6,6 +6,9 @@ $(function () {
     var SHORT_TEMPLATE = $('.col-right .segments .stats-not-bought .stats-label').html();
 
     $(".form input").focus();
+    addItem("corn");
+    addItem("bread");
+    addItem("butter");
 
     $(".form").keyup(function (event) {
         if (event.keyCode == 13) {
@@ -13,30 +16,41 @@ $(function () {
         }
     });
 
-    function addItem(title){
-
-    }
-
     $(".form button").click(function () {
-        var node = $(ITEM_TEMPLATE);
         var form = $(".form input");
-        var parent = $('<div class="segment state-not-bought state-ready"></div>');
-        if (form.val()) {
-            node.find(".title").text(form.val());
+        addItem(form.val());
+        form.val("");
+        form.focus();
+    });
+
+    function addItem(title){
+        var node = $(ITEM_TEMPLATE);
+        var parent = $('<div class="segment state-not-bought state-ready"  style="display:none;"></div>');
+        if (title) {
+            node.find(".title").text(title);
             parent.append(node);
-            parent.hide().appendTo($(".col-left .segments")).show('normal');
-            form.val("");
-            form.focus();
+            parent.appendTo($(".col-left .segments")).slideDown();
+            addToList(node);
 
             function addToList(item) {
                 var node = $(SHORT_TEMPLATE);
-                var parent = $('<span class="label stats-label"></span>');
+                var parent = $('<span class="label stats-label"  style="display:none;"></span>');
                 $(node[0]).text(item.find(".title").text());
                 parent.append(node);
-                parent.hide().appendTo($(".col-right .segments .stats-not-bought")).show('normal');
+                parent.appendTo($(".col-right .segments .stats-not-bought")).fadeIn('slow');
             }
 
-            addToList(node);
+
         }
+    }
+
+    $(".segments").delegate(".delete-button", "click", function(){
+        alert("Clicked");
+        var parent = $($(this).parents()[2]);
+        parent.slideUp( function(){
+            parent.remove();
+        });
+        console.log(parent);
     });
+
 });
