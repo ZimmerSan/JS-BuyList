@@ -130,19 +130,21 @@ body{
 }
 
 button.red{
-    background: #DB2828;
+    background: #db0000;
+    opacity: 0.75;
 }
 
 button.red:hover{
-    background: #db0000;
+    opacity: 1;
 }
 
 button.green {
-    background: #21BA45;
+    background: #22973e;
+    opacity: 0.75;
 }
 
 button.green:hover {
-    background: #22973e;
+    opacity: 1;
 }
 
 .count-label{
@@ -196,5 +198,12 @@ button.green:hover {
     text-decoration: line-through;
 }
 
+button:disabled {
+    opacity: 0.25;
+    cursor: default;
+}
 
+button:disabled:hover {
+    opacity: 0.25;
+}
 
