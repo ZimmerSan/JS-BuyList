@@ -6,9 +6,10 @@ $(function () {
     var SHORT_TEMPLATE = $('.col-right .segments .stats-not-bought .stats-label').html();
 
     $(".form input").focus();
-    addItem("corn");
     addItem("bread");
     addItem("butter");
+
+
 
     $(".form").keyup(function (event) {
         if (event.keyCode == 13) {
@@ -63,4 +64,51 @@ $(function () {
         }
     });
 
+    $(".segments").delegate(".buy-button", "click", function(){
+        var parent = $($(this).parents()[2]);
+        parent.children().fadeOut(function(){
+            parent.removeClass("state-ready").addClass("state-bought");
+            parent.find(".last-buttons").html('<button class="button unbuy-button">Не куплено</button>');
+            parent.children().fadeIn();
+        });
+        changeInList(parent.find(".title").text());
+
+        function changeInList(node){
+            $(".col-right .stats-not-bought .stats-label").each(function(index, item){
+                item = $(item);
+                var title = item.find(".title").text();
+                if(title == node){
+                    item.fadeOut( function(){
+                        item.remove();
+                        var child = '<span class="label stats-label"  style="display:none;">'+item.html()+'</span>';
+                        $(child).appendTo($(".col-right .stats-bought")).fadeIn();
+                    });
+                }
+            });
+        }
+    });
+
+    $(".segments").delegate(".unbuy-button", "click", function(){
+        var parent = $($(this).parents()[2]);
+        parent.children().fadeOut(function(){
+            parent.removeClass("state-bought").addClass("state-ready");
+            parent.find(".last-buttons").html('<button class="button buy-button">Куплено</button> <button class="button red delete-button" title="Видалити">x</button>');
+            parent.children().fadeIn();
+        });
+        changeInList(parent.find(".title").text());
+
+        function changeInList(node){
+            $(".col-right .stats-bought .stats-label").each(function(index, item){
+                item = $(item);
+                var title = item.find(".title").text();
+                if(title == node){
+                    item.fadeOut( function(){
+                        item.remove();
+                        var child = '<span class="label stats-label"  style="display:none;">'+item.html()+'</span>';
+                        $(child).appendTo($(".col-right .stats-not-bought")).fadeIn();
+                    });
+                }
+            });
+        }
+    });
 });

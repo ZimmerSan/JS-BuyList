@@ -161,7 +161,7 @@ button.green:hover {
     display: inline-block;
 }
 
-.buy-button {
+.buy-button, .unbuy-button {
     background-color: #E8E8E8;
     color: #000;
     padding:10px 15px;
@@ -194,7 +194,7 @@ button.green:hover {
     padding: 5px 7px;
 }
 
-.stats-bought, .stats-bought .circular {
+.stats-bought .title, .stats-bought .circular {
     text-decoration: line-through;
 }
 
