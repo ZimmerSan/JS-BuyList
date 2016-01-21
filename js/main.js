@@ -45,12 +45,22 @@ $(function () {
     }
 
     $(".segments").delegate(".delete-button", "click", function(){
-        alert("Clicked");
         var parent = $($(this).parents()[2]);
         parent.slideUp( function(){
             parent.remove();
         });
-        console.log(parent);
+        removeFromList(parent.find(".title").text());
+
+        function removeFromList(node){
+            $(".col-right .stats-not-bought .stats-label").each(function(index, item){
+                var title = $(item).find(".title").text();
+                if(title == node){
+                    $(item).fadeOut( function(){
+                        $(item).remove();
+                    });
+                }
+            });
+        }
     });
 
 });
