@@ -26,8 +26,21 @@ $(function () {
 
     function addItem(title){
         var node = $(ITEM_TEMPLATE);
-        var parent = $('<div class="segment state-not-bought state-ready"  style="display:none;"></div>');
+        var parent = $('<div class="segment state-ready"  style="display:none;"></div>');
+        var cont = true;
         if (title) {
+            LEFT_PANEL.find(".segment").each(function(index, item){
+                item = $(item);
+                var name = item.find(".title").text();
+                if(title == name){
+                    item.find(".plus-button").click();
+                    cont = false;
+                    return;
+                }
+            });
+
+            if(!cont) return;
+
             node.find(".title").text(title);
             parent.append(node);
             parent.appendTo($(".col-left .segments")).slideDown();
