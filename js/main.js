@@ -111,4 +111,39 @@ $(function () {
             });
         }
     });
+
+    $(".col-left .segments").delegate(".state-ready span.title", "click", function(){
+        var parent = $($(this).parents()[0]);
+        $(this).fadeOut(function(){
+            var input = '<input class="title" type="text" value="'+$(this).text()+'" style="display: none"/><span class="oldtitle" style="display: none;">'+$(this).text()+'</span> ';
+            parent.html(input);
+            $(parent.children()[0]).fadeIn( function(){
+                parent.children().focus();
+            });
+        });
+    });
+
+    $(".col-left .segments").delegate(".state-ready input.title", "focusout", function(){
+        var parent = $($(this).parents()[0]);
+        var oldName = parent.find(".oldtitle").text();
+        var newName = $(this).val();
+        $(this).fadeOut(function(){
+            var input = '<span class="title" style="display: none">'+newName+'</span>';
+            parent.html(input);
+            parent.children().fadeIn();
+            changeInList(oldName);
+
+            function changeInList(node){
+                $(".col-right .stats-not-bought .stats-label").each(function(index, item){
+                    item = $(item);
+                    var title = item.find(".title").text();
+                    if(title == node){
+                        item.find(".title").fadeOut(function(){
+                            item.find(".title").text(newName).fadeIn();
+                        });
+                    }
+                });
+            }
+        });
+    });
 });
