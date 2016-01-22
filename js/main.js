@@ -146,4 +146,28 @@ $(function () {
             }
         });
     });
+
+    $(".col-left .segments").delegate(".state-ready .add-buttons .plus-button", "click", function(){
+        var parent = $($(this).parents()[0]);
+        var numCol = parent.find(".count-label");
+        var itemTitle = $($(this).parents()[2]).find(".title").text();
+        var currentNum = parseInt(numCol.text());
+        numCol.fadeOut(function(){
+            parent.find(".minus-button").removeAttr("disabled");
+            numCol.text(currentNum+1).fadeIn();
+        });
+        changeInList(itemTitle);
+        function changeInList(node){
+            $(".col-right .stats-not-bought .stats-label").each(function(index, item){
+                item = $(item);
+                var title = item.find(".title").text();
+                if(title == node){
+                    item.find(".count").fadeOut(function(){
+                        item.find(".count").text(currentNum+1).fadeIn();
+                    });
+                }
+            });
+        }
+    });
+
 });
