@@ -4,7 +4,7 @@
 $(function () {
     var ITEM_TEMPLATE = $('.state-ready').html();
     var SHORT_TEMPLATE = $('.col-right .segments .stats-not-bought .stats-label').html();
-
+    var LEFT_PANEL = $(".col-left .segments");
     $(".form input").focus();
     addItem("bread");
     addItem("butter");
@@ -45,7 +45,7 @@ $(function () {
         }
     }
 
-    $(".segments").delegate(".delete-button", "click", function(){
+    LEFT_PANEL.delegate(".delete-button", "click", function(){
         var parent = $($(this).parents()[2]);
         parent.slideUp( function(){
             parent.remove();
@@ -64,7 +64,7 @@ $(function () {
         }
     });
 
-    $(".segments").delegate(".buy-button", "click", function(){
+    LEFT_PANEL.delegate(".buy-button", "click", function(){
         var parent = $($(this).parents()[2]);
         parent.children().fadeOut(function(){
             parent.removeClass("state-ready").addClass("state-bought");
@@ -88,7 +88,7 @@ $(function () {
         }
     });
 
-    $(".segments").delegate(".unbuy-button", "click", function(){
+    LEFT_PANEL.delegate(".unbuy-button", "click", function(){
         var parent = $($(this).parents()[2]);
         parent.children().fadeOut(function(){
             parent.removeClass("state-bought").addClass("state-ready");
@@ -112,7 +112,7 @@ $(function () {
         }
     });
 
-    $(".col-left .segments").delegate(".state-ready span.title", "click", function(){
+    LEFT_PANEL.delegate(".state-ready span.title", "click", function(){
         var parent = $($(this).parents()[0]);
         $(this).fadeOut(function(){
             var input = '<input class="title" type="text" value="'+$(this).text()+'" style="display: none"/><span class="oldtitle" style="display: none;">'+$(this).text()+'</span> ';
@@ -123,7 +123,7 @@ $(function () {
         });
     });
 
-    $(".col-left .segments").delegate(".state-ready input.title", "focusout", function(){
+    LEFT_PANEL.delegate(".state-ready input.title", "focusout", function(){
         var parent = $($(this).parents()[0]);
         var oldName = parent.find(".oldtitle").text();
         var newName = $(this).val();
@@ -147,7 +147,7 @@ $(function () {
         });
     });
 
-    $(".col-left .segments").delegate(".state-ready .add-buttons .plus-button", "click", function(){
+    LEFT_PANEL.delegate(".state-ready .add-buttons .plus-button", "click", function(){
         var parent = $($(this).parents()[0]);
         var numCol = parent.find(".count-label");
         var itemTitle = $($(this).parents()[2]).find(".title").text();
