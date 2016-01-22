@@ -147,14 +147,20 @@ $(function () {
         });
     });
 
-    LEFT_PANEL.delegate(".state-ready .add-buttons .plus-button", "click", function(){
+    LEFT_PANEL.delegate(".state-ready .add-buttons .button", "click", function(){
         var parent = $($(this).parents()[0]);
         var numCol = parent.find(".count-label");
         var itemTitle = $($(this).parents()[2]).find(".title").text();
         var currentNum = parseInt(numCol.text());
+        var currentButton = $(this);
+
         numCol.fadeOut(function(){
-            parent.find(".minus-button").removeAttr("disabled");
-            numCol.text(currentNum+1).fadeIn();
+            if(currentButton.hasClass("plus-button")) numCol.text(currentNum+1).fadeIn();
+            else                                      numCol.text(currentNum-1).fadeIn();
+
+            if(parseInt(numCol.text())<=1) parent.find(".minus-button").attr("disabled", true);
+            else                           parent.find(".minus-button").removeAttr("disabled");
+
         });
         changeInList(itemTitle);
         function changeInList(node){
@@ -163,7 +169,8 @@ $(function () {
                 var title = item.find(".title").text();
                 if(title == node){
                     item.find(".count").fadeOut(function(){
-                        item.find(".count").text(currentNum+1).fadeIn();
+                        if(currentButton.hasClass("plus-button")) item.find(".count").text(currentNum+1).fadeIn();
+                        else                                      item.find(".count").text(currentNum-1).fadeIn();
                     });
                 }
             });
